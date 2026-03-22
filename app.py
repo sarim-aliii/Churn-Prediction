@@ -2,13 +2,21 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import pickle
+import os
+import urllib.request
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, LabelEncoder
 
 
 # Load trained model
-model = load_model('model.h5')
+model_path = 'model.h5'
+url = 'https://github.com/sarim-aliii/churn-prediction/raw/main/model.h5'
+
+if not os.path.exists(model_path) or os.path.getsize(model_path) < 1000:
+    urllib.request.urlretrieve(url, model_path)
+
+model = load_model(model_path)
 
 # Load encoder and scaler
 with open('onehot_encoder_geo.pkl', 'rb') as file:
