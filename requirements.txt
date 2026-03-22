@@ -1,8 +1,6 @@
-ipykernel
 pandas
 numpy
 scikit-learn
 tensorflow
-tensorboard
 matplotlib
-streamlit
+streamlit>=1.25.0
